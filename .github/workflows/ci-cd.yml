@@ -21,7 +21,7 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
 
       - name: Install rsconnect
-        run: 
+        run: |
           apt install libcurl4-openssl-dev
           install.packages("rsconnect")
         shell: Rscript {0}
