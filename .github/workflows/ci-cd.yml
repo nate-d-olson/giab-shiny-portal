@@ -10,7 +10,7 @@ jobs:
   shiny-deploy:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.SHINYAPPS_TOKEN }}
     steps:
       - uses: actions/checkout@v3
 
@@ -20,11 +20,11 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-renv@v2
-
       - name: Install rsconnect
         run: install.packages("rsconnect")
         shell: Rscript {0}
+
+      - uses: r-lib/actions/setup-renv@v2
 
       - name: Authorize and deploy app
         env: 
