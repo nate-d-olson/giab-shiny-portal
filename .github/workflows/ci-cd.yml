@@ -1,11 +1,13 @@
-name: CI/CD
-
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [ main ]
+    branches: [main, master]
+
+name: shiny-deploy
 
 jobs:
-  build:
+  shiny-deploy:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -21,12 +23,16 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
 
       - name: Install rsconnect
-        run: |
-          install.packages("rsconnect")
+        run: install.packages("rsconnect")
         shell: Rscript {0}
 
       - name: Authorize and deploy app
+        env: 
+          # Provide your app name, account name, and server to be deployed below
+          APPNAME: giab-shiny-data-portal
+          ACCOUNT: n8datavis
+          SERVER: shinyapps.io # server to deploy
         run: |
-          rsconnect::setAccountInfo(${{ secrets.RSCONNECT_USER }}, ${{ secrets.RSCONNECT_TOKEN }}, ${{ secrets.RSCONNECT_SECRET }})
-          rsconnect::deployApp()
+          rsconnect::setAccountInfo("${{ secrets.RSCONNECT_USER }}", "${{ secrets.RSCONNECT_TOKEN }}", "${{ secrets.RSCONNECT_SECRET }}")
+          rsconnect::deployApp(appName = "${{ env.APPNAME }}", account = "${{ env.ACCOUNT }}", server = "${{ env.SERVER }}")
         shell: Rscript {0}
