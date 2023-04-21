@@ -25,5 +25,5 @@ jobs:
     - name: Deploy
       uses: r-lib/actions/deploy@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.SHINYAPPS_TOKEN }}
         provider: shinyapps
