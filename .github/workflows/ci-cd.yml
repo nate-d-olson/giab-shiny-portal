@@ -7,22 +7,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
       - uses: r-lib/actions/setup-r@v2
-      - name: Set up R
         with:
-          r-version: 4.2.1
-      - name: Install dependencies
-        run: |
-          R -e 'install.packages("remotes")'
-          R -e 'remotes::install_deps()'
-      - name: Build and test
-        run: R CMD build . && R CMD check *tar.gz
-  
-      - name: Deploy
-        uses: r-lib/actions/deploy@v2
-        with:
-          token: ${{ secrets.SHINYAPPS_TOKEN }}
-          provider: shinyapps
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-renv@v2
+
+      - name: Install rsconnect
+        run: install.packages("rsconnect")
+        shell: Rscript {0}
