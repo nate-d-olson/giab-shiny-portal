@@ -22,6 +22,5 @@ jobs:
 
       - name: Install rsconnect
         run: |
-          apt install libcurl4-openssl-dev
           install.packages("rsconnect")
         shell: Rscript {0}
