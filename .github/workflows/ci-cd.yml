@@ -13,6 +13,14 @@ jobs:
       GITHUB_PAT: ${{ secrets.SHINYAPPS_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        run: |
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
+
 
       - uses: r-lib/actions/setup-pandoc@v2
 
