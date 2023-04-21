@@ -1,0 +1,13 @@
+name: giab-shiny-portal
+title: giab-shiny-portal
+username: nolson
+account: nolson
+server: miganalytics.nist.gov
+hostUrl: https://miganalytics.nist.gov/__api__
+appId: 25
+bundleId: 93
+url: https://miganalytics.nist.gov/content/af5adfa0-9365-44c1-b40e-2ad920b6341b/
+when: 1682107791.28636
+lastSyncTime: 1682107791.28638
+asMultiple: FALSE
+asStatic: FALSE
