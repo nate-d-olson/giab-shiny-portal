@@ -1,0 +1,29 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up R
+      uses: r-lib/actions/setup-r@v1
+      with:
+        r-version: 4.1.0
+
+    - name: Install dependencies
+      run: |
+        R -e 'install.packages("remotes")'
+        R -e 'remotes::install_deps()'
+
+    - name: Build and test
+      run: R CMD build . && R CMD check *tar.gz
+
+    - name: Deploy
+      uses: r-lib/actions/deploy@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        provider: shinyapps
