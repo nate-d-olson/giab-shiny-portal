@@ -1,0 +1,14 @@
+75f484365c666d137434d57c13d55f32  bam_metadata.csv
+85d99ce13f81f69e1e14638a7d3a4494  bam_metadata.data_dictionary.md
+fc1d2be0b0af9546e54fcb3eaa279414  bamstats.csv
+a6c7dbb958da2afd81ec4483733fb585  error_fastq.csv
+80396a686380fd863606348fee9e53a7  fastq_metadata.csv
+8a2250b04a88862d3e9920263ef499e7  fastq_metadata.data_dictionary.md
+d46eee299926dd3098ee568b59f32228  fastqstats.csv
+453d424343770c802e5aec96b58351d9  ftp.csv
+14c226d556173a5e18bef8865c680d98  ftp.data_dictionary.md
+b7c2214dc8cbefd11ddd76e5182a0fce  README.md
+ceddb8c1c8f82356d6daf84941ce441c  s3.csv
+4fe6582f518f5073cf3b13aafebb5fe2  vcf_metadata.csv
+744acd21aaeaa582a779c0b4a03de181  vcf_metadata.data_dictionary.md
+be4d0d4236d01996340b07acb48b5aea  vcfstats.csv
