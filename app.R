@@ -1,5 +1,5 @@
 # 1. Install necessary packages
-install.packages(c("shiny", "dplyr", "ggplot2", "DT"))
+# install.packages(c("shiny", "dplyr", "ggplot2", "DT"))
 
 # 2. Load the required libraries
 library(shiny)
