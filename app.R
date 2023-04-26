@@ -1,5 +1,5 @@
 # 1. Install necessary packages
-install.packages(c("shiny", "dplyr", "ggplot2", "DT"))
+# install.packages(c("shiny", "dplyr", "ggplot2", "DT"))
 
 # 2. Load the required libraries
 library(shiny)
@@ -22,7 +22,7 @@ ui <- fluidPage(
                   choices = c("BAM" = "bam_metadata", "FASTQ" = "fastq_metadata", "VCF" = "vcf_metadata")),
       
       selectInput("summary_choice", "Choose a summary statistic:",
-                  choices = c("File Size" = "filesize_in_Gb", "BioSample" = "biosample", "Trio" = "trio"),
+                  choices = c("File Size" = "filesize_in_Gb", "GIAB ID" = "giab_id"),
                   selected = "filesize_in_Gb")
     ),
     
@@ -49,12 +49,22 @@ server <- function(input, output) {
                        "vcf_metadata" = vcf_metadata)
     
     # Create summary figure
-    ggplot(metadata, aes_string(x = input$summary_choice)) +
-      geom_histogram(binwidth = 1) +
-      labs(title = paste("Summary of", input$summary_choice),
-           x = input$summary_choice,
-           y = "Frequency") +
-      theme_minimal()
+    if(input$summary_choice == "filesize_in_Gb"){
+      ggplot(metadata, aes_string(x = input$summary_choice)) +
+        geom_histogram(binwidth = 1) +
+        labs(title = paste("Summary of", input$summary_choice),
+             x = input$summary_choice,
+             y = "Frequency") +
+        theme_minimal()  
+    } else {
+      ggplot(metadata, aes_string(x = input$summary_choice)) +
+        geom_bar() +
+        labs(title = paste("Summary of", input$summary_choice),
+             x = input$summary_choice,
+             y = "Count") +
+        theme_minimal()  
+    }
+    
   })
   
   # Render interactive tables for metadata
